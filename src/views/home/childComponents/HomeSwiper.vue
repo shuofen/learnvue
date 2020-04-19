@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-swiper">
     <swiper>
       <swiper-item v-for="item in banners" :key="item.acm">
         <a :href="item.link"><img :src="item.image"/></a>
@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style scoped>
+  .home-swiper{
+    padding-top: 44px;
+  }
 
 </style>

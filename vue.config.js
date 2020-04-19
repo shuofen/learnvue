@@ -10,5 +10,13 @@ module.exports = {
         'common': '@/common'
       }
     }
-  }
+  },
+  devServer: {
+    disableHostCheck: false,
+    host: "192.168.1.5",
+    port: 8080,
+    https: false,
+    hotOnly: false,
+    proxy: null
+}
 }
