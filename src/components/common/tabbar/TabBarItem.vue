@@ -32,6 +32,7 @@ export default {
 <style scoped>
 .tab-bar-item{
   text-align: center;
+  /* width: 25%; */
 }
 .tab-bar-item img{
   width: 60px;

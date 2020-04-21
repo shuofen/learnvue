@@ -16,6 +16,6 @@ export default {
 }
 .feature-view img{
   width: 100%;
-  padding-bottom: 600px;
+  /* padding-bottom: 600px; */
 }
 </style>

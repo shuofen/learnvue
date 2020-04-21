@@ -19,6 +19,7 @@ export default {
   left: 0;
   display: flex;
   width: 100%;
+  justify-content: space-evenly;
   box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
   -webkit-box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);
   -moz-box-shadow: 0 0 10px 0 hsla(0,6%,58%,.6);

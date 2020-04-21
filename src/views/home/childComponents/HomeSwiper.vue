@@ -1,5 +1,5 @@
 <template>
-  <div class="home-swiper">
+  <div class="home-swiper" v-if="hardReset">
     <swiper>
       <swiper-item v-for="item in banners" :key="item.acm">
         <a :href="item.link"><img :src="item.image"/></a>
@@ -20,8 +20,20 @@ export default {
     default() {
       return []
     }
+   },
+   data () {
+    return {
+       hardReset: false
+    }
+   },
+   watch: {
+     banners () {
+       this.$nextTick(() => {
+         this.hardReset = true
+       })
+     }
+   }
   }
-}
 </script>
 
 <style scoped>

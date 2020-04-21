@@ -60,7 +60,7 @@
       </a>
     </template>
   </tab-bar-item>
-  <tab-bar-item path="/login">
+  <!-- <tab-bar-item path="/login">
    <template v-slot:tab-bar-img>
        <a>
          <img src="https://img11.360buyimg.com/jdphoto/s130x100_jfs/t1/81741/30/12345/4140/5d9c4b13E726f0a1e/82c582e7c375e4b3.png"/>
@@ -71,7 +71,7 @@
         <img src="https://img11.360buyimg.com/jdphoto/s130x100_jfs/t1/67550/26/12426/5094/5d9c4b13Eea435a3f/81328b0609c60a3c.png"/>
       </a>
     </template>
-  </tab-bar-item>
+  </tab-bar-item> -->
  </tab-bar>
 </template>
 <script>
