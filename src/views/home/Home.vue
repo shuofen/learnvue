@@ -4,7 +4,8 @@
     <home-swiper :banners="banners"></home-swiper>
     <home-recommend :list ="list"></home-recommend>
     <feature-view></feature-view>
-    <tab-ctrol class="tab-ctrol" :tab-list="['流行','新款','精选']"></tab-ctrol>
+    <tab-ctrol @tabClick="tabClick" class="tab-ctrol" :tab-list="tabList"></tab-ctrol>
+    <goods-list :goodsData="goods[currentType].list" class="home-goods-list"></goods-list>
     <ul>
       <li>11111</li>
       <li>11111</li>
@@ -96,24 +97,56 @@ import HomeSwiper from 'views/home/childComponents/HomeSwiper'
 import HomeRecommend from 'views/home/childComponents/HomeRecommend'
 import FeatureView from 'views/home/childComponents/FeatureView'
 import TabCtrol from 'components/content/TabCtrol'
+import GoodsList from 'components/content/goods/GoodsList'
 
-import {getHomeMulData} from 'network/home'
+import {getHomeMulData, getGoodsData} from 'network/home'
 export default {
   name: 'Home',
   components: {
-    NavBar, HomeSwiper, HomeRecommend, FeatureView, TabCtrol
+    NavBar, HomeSwiper, HomeRecommend, FeatureView, TabCtrol, GoodsList
   },
   data() {
     return {
       banners: [],
-      list: []
+      list: [],
+      currentType: "pop",
+      tabList: ['流行','新款','精选'],
+      typeList: ['pop','sell','news'],
+      goods: {
+        'pop': {page: 0, list: []},
+        'sell': {page: 0, list: []},
+        'news': {page: 0, list: []}
+        }
+    }
+  },
+  methods:{
+    tabClick (index) {
+      //写个默认的typelist，通过index取值；
+      this.currentType = this.typeList[index];
+
+      //判断切换tabCtrol时，该类型中的list是否有数据，没有就请求后台，有就不请求；
+      if(this.goods[this.currentType].list.length == 0){
+        this.getGoodsData(this.currentType)
+      }
+
+    },
+    getHomeMulData () {
+      getHomeMulData().then(res => {
+        this.banners = res.data.banner.list;
+        this.list = res.data.recommend.list;
+      })
+    },
+    getGoodsData(type){
+       var page = this.goods[type].page + 1;
+       getGoodsData(type, page).then(res =>{
+         //es6写法向一个数组中push另一个数组，还可以遍历需要push的数组；
+         this.goods[type].list.push(...res.result.wall.docs);
+         this.goods[type].page += 1;
+      })
     }
   },
   mounted () {
-    getHomeMulData().then(res => {
-      this.banners = res.data.banner.list;
-      this.list = res.data.recommend.list;
-    })
+    this.getGoodsData('pop')
   }
 }
 </script>
@@ -127,5 +160,8 @@ export default {
 .tab-ctrol{
    position: sticky;
    top: 44px;
+}
+.home-goods-list{
+  background-color: #eeeeee;
 }
 </style>
