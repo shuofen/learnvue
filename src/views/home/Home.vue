@@ -140,13 +140,14 @@ export default {
        var page = this.goods[type].page + 1;
        getGoodsData(type, page).then(res =>{
          //es6写法向一个数组中push另一个数组，还可以遍历需要push的数组；
-         this.goods[type].list.push(...res.result.wall.docs);
+         this.goods[type].list = this.goods[type].list.concat(res.result.wall.docs);
          this.goods[type].page += 1;
       })
     }
   },
   mounted () {
-    this.getGoodsData('pop')
+    this.getHomeMulData();
+    this.getGoodsData('pop');
   }
 }
 </script>

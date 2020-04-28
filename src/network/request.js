@@ -22,3 +22,25 @@ instance.interceptors.response.use(res => {
 
  return instance(config)
 }
+
+
+export function request2(config) {
+  const instance = axios.create({
+    baseURL: '',
+  })
+ instance.interceptors.request.use(config => {
+  alert(config.url)
+  return config
+ },err => {
+   console.log(err)
+ })
+
+instance.interceptors.response.use(res => {
+  alert(res);
+  return res.data
+}, err => {
+  console.log(err)
+  alert(err)
+})
+ return instance(config)
+}
