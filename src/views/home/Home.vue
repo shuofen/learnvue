@@ -132,15 +132,16 @@ export default {
     },
     getHomeMulData () {
       getHomeMulData().then(res => {
-        this.banners = res.data.banner.list;
-        this.list = res.data.recommend.list;
+        this.banners = res.banners;
+        this.list = res.recommand;
+        
       })
     },
     getGoodsData(type){
        var page = this.goods[type].page + 1;
        getGoodsData(type, page).then(res =>{
          //es6写法向一个数组中push另一个数组，还可以遍历需要push的数组；
-         this.goods[type].list = this.goods[type].list.concat(res.result.wall.docs);
+         this.goods[type].list = this.goods[type].list.concat(res.goodsList);
          this.goods[type].page += 1;
       })
     }
