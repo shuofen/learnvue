@@ -13,8 +13,8 @@ module.exports = {
   },
   devServer: {
     disableHostCheck: false,
-    host: "192.168.1.5",
-    // host: "192.168.0.123",
+    // host: "192.168.1.5",
+    host: "192.168.0.123",
     port: 8080,
     https: false,
     hotOnly: false,

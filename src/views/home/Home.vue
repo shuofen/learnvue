@@ -1,97 +1,18 @@
 <template>
   <div class="home">
     <nav-bar class="home-nav-bar"><template v-slot:center>购物街</template></nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <home-recommend :list ="list"></home-recommend>
-    <feature-view></feature-view>
-    <tab-ctrol @tabClick="tabClick" class="tab-ctrol" :tab-list="tabList"></tab-ctrol>
-    <goods-list :goodsData="goods[currentType].list" class="home-goods-list"></goods-list>
-    <ul>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-      <li>11111</li>
-    </ul>
+    <scroll class="content">
+      <home-swiper :banners="banners"></home-swiper>
+      <home-recommend :list ="list"></home-recommend>
+      <feature-view></feature-view>
+      <tab-ctrol @tabClick="tabClick" class="tab-ctrol" :tab-list="tabList"></tab-ctrol>
+      <goods-list :goodsData="goods[currentType].list" class="home-goods-list"></goods-list>
+    </scroll>
   </div>
 </template>
 <script>
 import NavBar from 'components/common/navbar/NavBar'
+import Scroll from 'components/common/scroll/Scroll'
 
 import HomeSwiper from 'views/home/childComponents/HomeSwiper'
 import HomeRecommend from 'views/home/childComponents/HomeRecommend'
@@ -103,7 +24,7 @@ import {getHomeMulData, getGoodsData} from 'network/home'
 export default {
   name: 'Home',
   components: {
-    NavBar, HomeSwiper, HomeRecommend, FeatureView, TabCtrol, GoodsList
+    NavBar, HomeSwiper, HomeRecommend, FeatureView, TabCtrol, GoodsList, Scroll
   },
   data() {
     return {
@@ -153,6 +74,10 @@ export default {
 }
 </script>
 <style scoped>
+.home{
+  position: relative;
+  height: 100vh;
+}
 .home-nav-bar{
   background-color: var(--color-tint);
   font-size: 12px;
@@ -165,5 +90,12 @@ export default {
 }
 .home-goods-list{
   background-color: #eeeeee;
+}
+
+.content{
+  position: absolute;
+  top: 0;
+  bottom: 49px;
+  overflow: hidden;
 }
 </style>
